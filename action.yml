@@ -3,9 +3,6 @@ description: "Install Yotta"
 runs:
   using: "composite"
   steps:
-    - name: "Update apt-get"
-      run: "sudo apt-get update --quiet"
-      shell: "bash"
     - name: "Install dependencies"
       run: "sudo apt-get install -y cmake --quiet"
       shell: "bash"
