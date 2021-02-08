@@ -13,9 +13,12 @@ runs:
       run: |
         wget -q https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip &&
         unzip ninja-linux.zip &&
-        sudo mv ninja /usr/local/bin/Ninja &&
-        sudo chmod +x /usr/local/bin/Ninja &&
-        Ninja --version
+        sudo mv ninja /usr/local/bin/ninja &&
+        sudo chmod +x /usr/local/bin/ninja &&
+        ninja --version &&
+        sudo ln -s /usr/bin/ninja /usr/bin/ninja-build &&
+        sudo ln -s /usr/bin/ninja /usr/local/bin/Ninja &&
+        ninja --version
       shell: "bash"
     - name: "Install ARM embedded toolchain"
       shell: "bash"
