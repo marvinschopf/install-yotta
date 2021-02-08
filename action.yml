@@ -11,23 +11,31 @@ runs:
       shell: "bash"
     - name: "Install Ninja"
       run: |
-        wget https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip &&
+        wget -q https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip &&
         unzip ninja-linux.zip &&
         sudo mv ninja /usr/local/bin/ninja &&
         sudo chmod +x /usr/local/bin/ninja &&
         ninja --version &&
         sudo ln -s /usr/bin/ninja /usr/bin/ninja-build
       shell: "bash"
-    - name: "Install ARM embedded toolchain"
+    - name: "Download ARM embedded toolchain"
       shell: "bash"
       run: |
-        wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 &&
-        sudo tar xjf gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 -C /usr/share/ &&
+        wget -q https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2
+    - name: "Unpack ARM embeddded toolchain"
+      shell: "bash"
+      run: |
+        sudo tar xjf gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 -C /usr/share/
+    - name: "Link ARM embedded toolchain"
+      shell: "bash"
+      run: |
         sudo ln -s /usr/share/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux/bin/arm-none-eabi-gcc /usr/bin/arm-none-eabi-gcc &&
         sudo ln -s /usr/share/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux/bin/arm-none-eabi-g++ /usr/bin/arm-none-eabi-g++ &&
         sudo ln -s /usr/share/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux/bin/arm-none-eabi-gdb /usr/bin/arm-none-eabi-gdb &&
-        sudo ln -s /usr/share/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux/bin/arm-none-eabi-size /usr/bin/arm-none-eabi-size &&
-        sudo apt-get install -y libncurses-dev &&
+        sudo ln -s /usr/share/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux/bin/arm-none-eabi-size /usr/bin/arm-none-eabi-size
+    - name: "Show versions of ARM embedded toolchain"
+      shell: "bash"
+      run: |
         arm-none-eabi-gcc --version &&
         arm-none-eabi-g++ --version &&
         arm-none-eabi-gdb --version &&
