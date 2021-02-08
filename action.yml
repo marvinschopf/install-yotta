@@ -11,7 +11,8 @@ runs:
       run: "wget -q https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip"
     - name: "Verify Ninja"
       shell: "bash"
-      run: "echo "763464859c7ef2ea3a0a10f4df40d2025d3bb9438fcb1228404640410c0ec22d ninja-linux.zip" |sha256sum --check --strict"
+      run: |
+        echo "763464859c7ef2ea3a0a10f4df40d2025d3bb9438fcb1228404640410c0ec22d ninja-linux.zip" |sha256sum --check --strict
     - name: "Unzip Ninja"
       shell: "bash"
       run: "unzip ninja-linux.zip"
