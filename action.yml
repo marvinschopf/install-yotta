@@ -17,6 +17,20 @@ runs:
         sudo chmod +x /usr/local/bin/ninja &&
         ninja --version
       shell: "bash"
+    - name: "Install ARM embedded toolchain"
+      shell: "bash"
+      run: |
+        wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2?revision=ca0cbf9c-9de2-491c-ac48-898b5bbc0443&la=en&hash=68760A8AE66026BCF99F05AC017A6A50C6FD832A &&
+        sudo tar xjf gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 -C /usr/share/ &&
+        sudo ln -s /usr/share/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux/bin/arm-none-eabi-gcc /usr/bin/arm-none-eabi-gcc &&
+        sudo ln -s /usr/share/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux/bin/arm-none-eabi-g++ /usr/bin/arm-none-eabi-g++ &&
+        sudo ln -s /usr/share/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux/bin/arm-none-eabi-gdb /usr/bin/arm-none-eabi-gdb &&
+        sudo ln -s /usr/share/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux/bin/arm-none-eabi-size /usr/bin/arm-none-eabi-size &&
+        sudo apt-get install -y libncurses-dev &&
+        arm-none-eabi-gcc --version &&
+        arm-none-eabi-g++ --version &&
+        arm-none-eabi-gdb --version &&
+        arm-none-eabi-size --version
     - name: "Install Python 2.7"
       run: "sudo apt-get install -y python2 python2-dev"
       shell: "bash"
