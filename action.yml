@@ -20,19 +20,6 @@ runs:
         sudo ln -s /usr/bin/ninja /usr/local/bin/Ninja &&
         ninja --version
       shell: "bash"
-    - name: "Install ARM embedded toolchain"
-      shell: "bash"
-      run: |
-        wget -q https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 &&
-        sudo tar xjf gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 -C /usr/share/ &&
-        sudo ln -s /usr/share/gcc-arm-none-eabi-10-2020-q4-major/bin/* /usr/bin/
-    - name: "Show versions of ARM embedded toolchain"
-      shell: "bash"
-      run: |
-        arm-none-eabi-gcc --version &&
-        arm-none-eabi-g++ --version &&
-        arm-none-eabi-gdb --version &&
-        arm-none-eabi-size --version
     - name: "Install Python 2.7"
       run: "sudo apt-get install -y python2 python2-dev --quiet"
       shell: "bash"
