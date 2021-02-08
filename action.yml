@@ -6,16 +6,29 @@ runs:
     - name: "Install dependencies"
       run: "sudo apt-get install -y cmake --quiet"
       shell: "bash"
-    - name: "Install Ninja"
+    - name: "Download Ninja"
+      shell: "bash"
+      run: "wget -q https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip"
+    - name: "Verify Ninja"
+      shell: "bash"
+      run: "echo "763464859c7ef2ea3a0a10f4df40d2025d3bb9438fcb1228404640410c0ec22d ninja-linux.zip" |sha256sum --check --strict"
+    - name: "Unzip Ninja"
+      shell: "bash"
+      run: "unzip ninja-linux.zip"
+    - name: "Move Ninja"
+      shell: "bash"
+      run: "sudo mv ninja /usr/local/bin/ninja"
+    - name: "Delete Ninja source"
+      shell: "bash"
+      run: "rm ninja-linux.zip"
+    - name: "Make Ninja executable"
+      shell: "bash"
+      run: "sudo chmod +x /usr/local/bin/ninja"
+    - name: "Link Ninja"
+      shell: "bash"
       run: |
-        wget -q https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip &&
-        echo "763464859c7ef2ea3a0a10f4df40d2025d3bb9438fcb1228404640410c0ec22d ninja-linux.zip" |sha256sum --check --strict &&
-        unzip ninja-linux.zip &&
-        sudo mv ninja /usr/local/bin/ninja &&
-        sudo chmod +x /usr/local/bin/ninja &&
         sudo ln -s /usr/bin/ninja /usr/bin/ninja-build &&
         sudo ln -s /usr/bin/ninja /usr/local/bin/Ninja
-      shell: "bash"
     - name: "Install Python 2.7"
       run: "sudo apt-get install -y python2 python2-dev --quiet"
       shell: "bash"
