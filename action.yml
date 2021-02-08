@@ -8,35 +8,32 @@ runs:
       shell: "bash"
     - name: "Download Ninja"
       shell: "bash"
-      run: "wget -q https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip"
+      run: wget -q https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip
     - name: "Verify Ninja"
       shell: "bash"
       run: |
         echo "763464859c7ef2ea3a0a10f4df40d2025d3bb9438fcb1228404640410c0ec22d ninja-linux.zip" |sha256sum --check --strict
     - name: "Unzip Ninja"
       shell: "bash"
-      run: "unzip ninja-linux.zip"
+      run: unzip ninja-linux.zip
     - name: "Move Ninja"
       shell: "bash"
-      run: "sudo mv ninja /usr/local/bin/ninja"
-    - name: "Delete Ninja source"
-      shell: "bash"
-      run: "rm ninja-linux.zip"
+      run: sudo mv ninja /usr/local/bin/ninja
     - name: "Make Ninja executable"
       shell: "bash"
-      run: "sudo chmod +x /usr/local/bin/ninja"
+      run: sudo chmod +x /usr/local/bin/ninja
     - name: "Link Ninja"
       shell: "bash"
       run: |
         sudo ln -s /usr/bin/ninja /usr/bin/ninja-build &&
         sudo ln -s /usr/bin/ninja /usr/local/bin/Ninja
     - name: "Install Python 2.7"
-      run: "sudo apt-get install -y python2 python2-dev --quiet"
+      run: sudo apt-get install -y python2 python2-dev --quiet
       shell: "bash"
     - name: "Add to path"
       shell: "bash"
       run: |
         echo "$HOME/.local/bin" >> $GITHUB_PATH
     - name: "Install Yotta"
-      run: "pip install yotta --quiet"
+      run: pip install yotta --quiet
       shell: "bash"
