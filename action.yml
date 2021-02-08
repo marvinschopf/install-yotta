@@ -15,7 +15,7 @@ runs:
         unzip ninja-linux.zip &&
         sudo mv ninja /usr/local/bin/Ninja &&
         sudo chmod +x /usr/local/bin/Ninja &&
-        ninja --version
+        Ninja --version
       shell: "bash"
     - name: "Install ARM embedded toolchain"
       shell: "bash"
