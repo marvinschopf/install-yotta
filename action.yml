@@ -14,7 +14,8 @@ runs:
         wget https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip &&
         unzip ninja-linux.zip &&
         sudo mv ninja /usr/local/bin/ninja &&
-        sudo chmod +x /usr/local/bin/ninja
+        sudo chmod +x /usr/local/bin/ninja &&
+        ninja --version
       shell: "bash"
     - name: "Install Python 2.7"
       run: "sudo apt-get install -y python2 python2-dev"
@@ -26,3 +27,6 @@ runs:
       shell: "bash"
       run: |
         echo "$HOME/.local/bin" >> $GITHUB_PATH
+    - name: "Run 'yotta clean'"
+      shell: "bash"
+      run: "yotta clean"
