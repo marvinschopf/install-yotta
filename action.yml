@@ -16,5 +16,6 @@ runs:
       run: "pip install yotta"
       shell: "bash"
     - name: "Add to path"
-      run: "echo "$HOME/.local/bin" >> $GITHUB_PATH"
       shell: "bash"
+      run: |
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
