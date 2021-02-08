@@ -36,6 +36,8 @@ runs:
     - name: "Show versions of ARM embedded toolchain"
       shell: "bash"
       run: |
+        ls /usr/share/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux/bin/ &&
+        ls /usr/bin/ | grep "arm-none" &&
         arm-none-eabi-gcc --version &&
         arm-none-eabi-g++ --version &&
         arm-none-eabi-gdb --version &&
