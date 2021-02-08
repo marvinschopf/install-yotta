@@ -1,12 +1,11 @@
 name: "Install Yotta"
 description: "Install Yotta"
 runs:
-  steps:
-    - name: "Install Ninja"
-      uses: "seanmiddleditch/gha-setup-ninja@master"
-    - name: "Install Python"
-      uses: "actions/setup-python@v2"
-      with:
-        python-version: '2.7.x'
-    - name: "Install Yotta"
-      run: "pip install yotta"
+  - name: "Install Ninja"
+    uses: "seanmiddleditch/gha-setup-ninja@master"
+  - name: "Install Python"
+    uses: "actions/setup-python@v2"
+    with:
+      python-version: '2.7.x'
+  - name: "Install Yotta"
+    run: "pip install yotta"
