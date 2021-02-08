@@ -11,9 +11,9 @@ runs:
       shell: "bash"
     - name: "Install Ninja"
       run: |
-        wget https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip
-        unzip ninja-linux.zip
-        mv ninja /usr/local/bin/ninja
+        wget https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip &&
+        unzip ninja-linux.zip &&
+        mv ninja /usr/local/bin/ninja &&
         chmod +x /usr/local/bin/ninja
       shell: "Bash"
     - name: "Install Python 2.7"
