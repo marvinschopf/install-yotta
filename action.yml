@@ -16,7 +16,8 @@ runs:
         sudo mv ninja /usr/local/bin/ninja &&
         sudo chmod +x /usr/local/bin/ninja &&
         ninja --version &&
-        sudo ln -s /usr/bin/ninja /usr/bin/ninja-build
+        sudo ln -s /usr/bin/ninja /usr/bin/ninja-build &&
+        sudo ln -s /usr/bin/ninja /usr/local/bin/Ninja
       shell: "bash"
     - name: "Install ARM embedded toolchain"
       shell: "bash"
