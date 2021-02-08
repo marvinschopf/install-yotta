@@ -25,6 +25,3 @@ runs:
     - name: "Install Yotta"
       run: "pip install yotta --quiet"
       shell: "bash"
-    - name: "Run 'yotta clean'"
-      shell: "bash"
-      run: "yotta clean"
