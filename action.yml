@@ -4,22 +4,19 @@ runs:
   using: "composite"
   steps:
     - name: "Install dependencies"
-      run: "sudo apt-get install -y cmake --quiet"
+      run: "sudo apt-get install -qq -o Dpkg::Use-Pty=0 cmake python2 python2-dev --quiet"
       shell: "bash"
     - name: "Install Ninja"
       shell: "bash"
       run: |
-        curl -L https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip -O &&
+        curl --silent -L https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip -O &&
         echo "763464859c7ef2ea3a0a10f4df40d2025d3bb9438fcb1228404640410c0ec22d ninja-linux.zip" |sha256sum --check --strict &&
-        unzip ninja-linux.zip &&
+        unzip -qq ninja-linux.zip &&
         sudo mv ninja /usr/local/bin/ninja &&
         rm ninja-linux.zip &&
         sudo chmod +x /usr/local/bin/ninja &&
         sudo ln -s /usr/bin/ninja /usr/bin/ninja-build &&
         sudo ln -s /usr/bin/ninja /usr/local/bin/Ninja
-    - name: "Install Python 2.7"
-      run: sudo apt-get install -y python2 python2-dev --quiet
-      shell: "bash"
     - name: "Add to path"
       shell: "bash"
       run: |
