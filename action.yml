@@ -10,7 +10,6 @@ runs:
       shell: "bash"
       run: |
         curl -L https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip --output ninja-linux.zip &&
-        echo "763464859c7ef2ea3a0a10f4df40d2025d3bb9438fcb1228404640410c0ec22d ninja-linux.zip" |sha256sum --check --strict &&
         unzip ninja-linux.zip &&
         sudo mv ninja /usr/local/bin/ninja &&
         rm ninja-linux.zip &&
