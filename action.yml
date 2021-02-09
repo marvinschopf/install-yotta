@@ -3,24 +3,27 @@ description: "Install Yotta"
 runs:
   using: "composite"
   steps:
-    - name: "Install dependencies"
-      run: "sudo apt-get install -qq -o Dpkg::Use-Pty=0 cmake python2 python2-dev --quiet"
+    - run: "sudo apt-get install -qq -o Dpkg::Use-Pty=0 cmake python2 python2-dev --quiet"
       shell: "bash"
-    - name: "Install Ninja"
+    - run: "curl --silent -L https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip -O"
       shell: "bash"
-      run: |
-        curl --silent -L https://github.com/ninja-build/ninja/releases/download/v1.10.2/ninja-linux.zip -O &&
-        echo "763464859c7ef2ea3a0a10f4df40d2025d3bb9438fcb1228404640410c0ec22d ninja-linux.zip" |sha256sum --check --strict &&
-        unzip -qq ninja-linux.zip &&
-        sudo mv ninja /usr/local/bin/ninja &&
-        rm ninja-linux.zip &&
-        sudo chmod +x /usr/local/bin/ninja &&
-        sudo ln -s /usr/bin/ninja /usr/bin/ninja-build &&
-        sudo ln -s /usr/bin/ninja /usr/local/bin/Ninja
-    - name: "Add to path"
+    - run: |
+        echo "763464859c7ef2ea3a0a10f4df40d2025d3bb9438fcb1228404640410c0ec22d ninja-linux.zip" |sha256sum --check --strict
       shell: "bash"
-      run: |
+    - run: "unzip -qq ninja-linux.zip"
+      shell: "bash"
+    - run: "sudo mv ninja /usr/local/bin/ninja"
+      shell: "bash"
+    - run: "rm ninja-linux.zip"
+      shell: "bash"
+    - run: "sudo chmod +x /usr/local/bin/ninja"
+      shell: "bash"
+    - run: "sudo ln -s /usr/bin/ninja /usr/bin/ninja-build"
+      shell: "bash"
+    - run: "sudo ln -s /usr/bin/ninja /usr/local/bin/Ninja"
+      shell: "bash"
+    - run: |
         echo "$HOME/.local/bin" >> $GITHUB_PATH
-    - name: "Install Yotta"
-      run: pip install yotta --quiet
+      shell: "bash"
+    - run: pip install yotta --quiet
       shell: "bash"
