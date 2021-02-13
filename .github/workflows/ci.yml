@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install
+        uses: marvinschopf/install-yotta@main
+      - name: Test Ninja
+        run: if ! command -v ninja&>/dev/null;then echo "ninja could not be found";exit 1;fi
+      - name: Test Yotta
+        run: if ! command -v yotta&>/dev/null;then echo "yotta could not be found";exit 1;fi
